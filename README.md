@@ -10,7 +10,28 @@ This Node.js script reads a JSON file containing an array of items, splits them 
 ## Setup
 
 2.  **Prepare your data:** Import your JSON data file (e.g., `emails.json`).
-3.  **Configure Environment Variables:** The script relies on environment variables for configuration. You can create a `.env` file and load it with node.
+3.  **Configure Environment Variables:** The script relies on environment variables for configuration. You can create a `.env` file and load it with node (it does need node version superior or equals to v20.6.0) or just set them up in your shell before running the script.
+
+```bash
+
+node --env-file=.env send-batches.js
+
+# or 
+
+export WEBHOOK_URL="..."
+export EMAILS_PATH="..."
+export TOKEN="..."
+export BATCH_SIZE=50
+export DELAY_BETWEEN_BATCHES_MS=60 # 60 seconds delay
+export START=5 # 0-based index of the batch to start processing from
+export RETRY_MODE=true # only process batches whose indices are listed in the `failed.txt` file
+node send-batches.js
+
+# or
+
+WEBHOOK_URL="..." EMAILS_PATH="..." TOKEN="..." BATCH_SIZE=50 DELAY_BETWEEN_BATCHES_MS=60 START=5 RETRY_MODE=true node send-batches.js
+
+```
 
 ## Configuration
 
@@ -40,7 +61,7 @@ node --env-file=.env send-batches.js
 The script uses two files in the same directory to manage its state:
 
 - `failed.txt`: If a batch fails to send (e.g., due to a network error or non-2xx response from the webhook), the **0-based index** of that failed batch is appended to this file. This allows for targeted retries later.
-- `next.txt`: _(Currently only read)_ The script checks for this file on startup. If it exists, it reads the number inside and uses it as the starting batch index, overriding the `START` environment variable. This is intended to allow resuming from the exact point of interruption, although the current script version doesn't automatically _write_ to this file after each successful batch. You have to do it manually running `echo "someNumber" > next.txt`.
+- `next.txt`: The script checks for this file on startup. If it exists, it reads the number inside and uses it as the starting batch index, overriding the `START` environment variable. This is intended to allow resuming from the exact point of interruption, although the current script version doesn't automatically _write_ to this file after each successful batch. You have to do it manually running `echo "someNumber" > next.txt`.
 
 ## Retrying Failed Batches
 
