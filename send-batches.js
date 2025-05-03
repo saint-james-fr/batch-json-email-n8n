@@ -98,7 +98,6 @@ async function main() {
     const rawData = fs.readFileSync(config.inputFile, "utf8");
 
     let data;
-    let i;
 
     try {
       data = JSON.parse(rawData);
