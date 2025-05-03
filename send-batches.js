@@ -16,6 +16,7 @@ const RETRIES = fs.existsSync("failed.txt")
   ? fs
       .readFileSync("failed.txt", "utf8")
       .split("\n")
+      .filter((line) => line.trim() !== "")
       .map(Number)
       .filter((n) => !isNaN(n))
   : [];
