@@ -11,7 +11,7 @@ const START = fs.existsSync("next.txt")
   : process.env.START
   ? parseInt(process.env.START)
   : 0;
-const RETRY_MODE = !!process.env.RETRY_MODE;
+const RETRY_MODE = process.env.RETRY_MODE === "true" || process.env.RETRY_MODE === "1";
 const RETRIES = fs.existsSync("failed.txt")
   ? fs
       .readFileSync("failed.txt", "utf8")
