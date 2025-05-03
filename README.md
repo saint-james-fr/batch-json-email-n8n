@@ -1,4 +1,4 @@
-# Batch JSON to Webhook Sender
+# Batch Emails as JSON to Webhook
 
 This Node.js script reads a JSON file containing an array of items, splits them into batches, and sends each batch sequentially to a specified webhook URL via POST requests. It includes features for rate limiting (delay between batches), handling failures, retrying failed batches, and resuming processing from where it left off.
 
