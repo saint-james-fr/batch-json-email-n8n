@@ -4,7 +4,7 @@ This Node.js script reads a JSON file containing an array of items, splits them 
 
 ## Prerequisites
 
-- **Node.js:** Ensure you have Node.js installed (version 14 or later recommended).
+- **Node.js:** Ensure you have Node.js installed (version 20 or later recommended).
 - **Input JSON File:** A JSON file containing the data to be sent. The script expects the top-level structure to be an array of items, or an object containing exactly one property whose value is an array of items.
 
 ## Setup
