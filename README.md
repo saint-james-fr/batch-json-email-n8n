@@ -2,6 +2,8 @@
 
 This Node.js script reads a JSON file containing an array of items, splits them into batches, and sends each batch sequentially to a specified webhook URL via POST requests. It includes features for rate limiting (delay between batches), handling failures, retrying failed batches, and resuming processing from where it left off.
 
+It's related to [this dev.to article](https://dev.to/saintjamesfr/build-a-no-code-tech-newsletter-intelligence-agent-with-n8n-and-vector-database-19oi)
+
 ## Prerequisites
 
 - **Node.js:** Ensure you have Node.js installed (version 20 or later recommended).
